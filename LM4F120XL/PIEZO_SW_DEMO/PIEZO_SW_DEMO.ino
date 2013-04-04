@@ -17,14 +17,14 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-//    PIEZO SOUNDER    PB_4
+//    PIEZO SOUNDER  PB_4
 //
-//    RED_LED        PF1
-//    GREEN_LED    PF_3
-//    BLUE_LED       PF_2
+//    RED_LED     PF1
+//    GREEN_LED   PF_3
+//    BLUE_LED    PF_2
 //
-//    PUSH1            PF_4
-//    PUSH2            PF_0
+//    PUSH1       PF_4
+//    PUSH2       PF_0
 
 
 static int    proc_state=0;
@@ -54,7 +54,7 @@ void    sw1_proc( void )
 {
     detachInterrupt(PUSH1);
 
-   delay(5);        // delay 20ms
+   delay(5);        // delay 5ms
     if( digitalRead(PUSH1) == LOW ) {
         digitalWrite(BLUE_LED, !digitalRead(BLUE_LED));
         proc_state |= 0x01;
@@ -67,7 +67,7 @@ void    sw2_proc( void )
 {
     detachInterrupt(PUSH2);
 
-   delay(5);        // delay 20ms
+   delay(5);        // delay 5ms
     if( digitalRead(PUSH2) == LOW ) {
         digitalWrite(RED_LED, !digitalRead(RED_LED));
         proc_state |= 0x02;
@@ -77,14 +77,14 @@ void    sw2_proc( void )
 
 void    Beep(void)
 {
-    tone( PB_4, 4000);
+    tone( PB_4, 4000);    //4kHz
     delay( 50 );
     noTone( PB_4 );
     delay( 20 );
 }
 void    BeepH(void)
 {
-    tone( PB_4, 4300);
+    tone( PB_4, 4300);    //4.3kHz
     delay( 40 );
     noTone( PB_4 );
     delay( 20 );

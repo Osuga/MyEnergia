@@ -52,20 +52,14 @@ void    setup()
 
     myOLED.dspON();
 
-    myOLED.drawLineTest();
-
     Beep();
     delay( 50 );
     Beep();
     delay( 100 );
 
-    delay( 2000 );
-    myOLED.clearScreen(COLOR_BLACK);
-//    myOLED.dspSetFontSize( 1  );
-    myOLED.dspSetFontSize( FONT_SEG7L );
+    myOLED.dspSetFontSize( 2 );
 
-    myOLED.dspSetCharColor(COLOR_BLUE);
-//    myOLED.dspSetBackColor(COLOR_DGRAY);
+    myOLED.dspSetCharColor(COLOR_CYAN);
 }
 
 void    trigger1(void)
@@ -134,14 +128,14 @@ void    loop()
 //        msgTemp += String(((int)(aveTemp*10)%10),DEC);
 
         myOLED.dspLocate(0,0);
-        myOLED.dspPutChar( msg );
+//        myOLED.dspPutChar( msg );
 
 //        myOLED.dspPutChar( ' ' );
 
         msCount = 0;
  //        digitalWrite(RED_LED, !digitalRead(RED_LED));
 
-//        myOLED.dspDrawTest1();
+        myOLED.dspDrawTest1();
     }
     if( proc_mode &0x01 ) {
         proc_mode&=~0x01;

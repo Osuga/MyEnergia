@@ -8,7 +8,7 @@
 #include    "font10x12.h"
 #include    "font_inv12.h"
 
-#define    __HAS_7SEG__
+//#define    __HAS_7SEG__
 #ifdef        __HAS_7SEG__
 #include    "SEVEN_SEG.h"
 #endif        //__HAS_7SEG__
@@ -287,7 +287,8 @@ void	OLED::dspPutChar(uint8_t x,uint8_t y,uint8_t a)
 	for(i=0; i< __x_witch ; i++) {	
             temp = font_inv12[a-32][i];
             for(j=__y_witch; j>0; j--) {
-                if(temp & 0x8000) drawDot(x+i,y+j,__CharColor);
+//                if(temp & 0x8000) drawDot(x+i,y+j,__CharColor);        //16bit Hight
+                if(temp & 0x1000) drawDot(x+i,y+j,__CharColor);        //12bit Hight
                 temp <<= 1;
            }
         }
@@ -310,7 +311,7 @@ void	OLED::dspDrawTest1( void )
 
 //     for(y=0;y<DSP_MAX_Y;y+=(__y_witch+1)) {
      for(y=0;y<4;y++) {
-        for(i=0;i<9; i++ ,ch++) {
+        for(i=0;i<(DSP_MAX_X/__x_witch); i++ ,ch++) {
             dspPutChar( ch );
          }
     }
@@ -334,7 +335,7 @@ void        OLED::dspSetFontSize( uint8_t num )
              __font_size = FONT_LARGE;
             break;
         case FONT_INV:
-             __x_witch = 12;  __y_witch = 16;
+             __x_witch = 12;  __y_witch = 12;
              __font_size = FONT_INV;
             break;
         case FONT_SEG7M:
